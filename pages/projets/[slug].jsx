@@ -97,7 +97,7 @@ export default function Show({ projet }) {
 								href={`/www.${urlDuProjet}`}
 								target='_blank'
 								className=' bg-indigo-500 rounded-lg p-2 text-white'
-								rel='noopener noreferrer'
+								rel='noreferrer'
 							>
 								Voir le projet
 							</a>
