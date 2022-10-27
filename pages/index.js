@@ -7,7 +7,10 @@ import Title from "../components/Title";
 
 export default function Home({ projets }) {
 	return (
-		<Layout>
+		<Layout
+			title='Accueil'
+			metaContent='Bienvenue dans mon portfolio. Je suis Mit K. dévellopeur & formateur web. Formateur React et formateur Laravel'
+		>
 			<div className='container'>
 				<SectionStack />
 				<div className='py-32'>
@@ -32,7 +35,11 @@ export async function getStaticProps() {
 		accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
 	});
 	// 2- recupere la data une fois que la promise succes
-	const res = await client.getEntries({ content_type: "projets" });
+	const res = await client.getEntries({
+		content_type: "projets",
+		limit: 8,
+		order: "sys.createdAt",
+	});
 	// 3- On envoie la data dans le props de la page
 	return {
 		props: {

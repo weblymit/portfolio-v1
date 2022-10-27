@@ -50,10 +50,21 @@ export async function getStaticProps({ params }) {
 
 export default function Show({ projet }) {
 	console.log("projet:", projet.fields);
-	const { title, description, roles, skills, urlDuProjet, images } =
-		projet.fields;
+	const {
+		title,
+		description,
+		roles,
+		skills,
+		urlDuProjet,
+		images,
+		featuredImage,
+	} = projet.fields;
 	return (
-		<Layout>
+		<Layout
+			title={title}
+			metaContent={`Le projet ${title} est un projet fait avec larave et react`}
+			image={`http:${featuredImage.fields.file.url}`}
+		>
 			<div className='container pt-8'>
 				<div className='grid grid-cols-2 items-centersk gap-6'>
 					<div className='pr-10'>
@@ -83,9 +94,10 @@ export default function Show({ projet }) {
 						</div>
 						<div className='p2 mt-6'>
 							<a
-								href={urlDuProjet}
+								href={`/www.${urlDuProjet}`}
 								target='_blank'
 								className=' bg-indigo-500 rounded-lg p-2 text-white'
+								rel='noopener noreferrer'
 							>
 								Voir le projet
 							</a>
@@ -96,7 +108,7 @@ export default function Show({ projet }) {
 							<img
 								key={index}
 								src={image.fields.file.url}
-								alt='titre du projet'
+								alt={`Mit K portfolio ${title}`}
 							/>
 						))}
 					</div>
